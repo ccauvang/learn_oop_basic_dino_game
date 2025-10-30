@@ -7,11 +7,11 @@ import 'package:dino/movementstrategy.dart';
 class Obstacle extends Entity {
   final double _damageValue;
   bool _isCollision;
-  final String type;
+  final String _type;
 
   Obstacle({
     required double damageValue,
-    required this.type,
+    required type,
     required Offset pos,
     required double w,
     required double h,
@@ -19,12 +19,14 @@ class Obstacle extends Entity {
     required MovementStrategy movemento,
   }) : _damageValue = damageValue,
        _isCollision = isCollision,
+       _type = type,
        super(position: pos, width: w, height: h, movement: movemento);
 
   get isCollision => _isCollision;
   set isCollision(bool value) => _isCollision = value;
 
   get damageValue => _damageValue;
+  get type => _type;
 
   bool checkCollision(Dino dino, Gamecontroller gctl) {
     return ((position.dx < dino.position.dx + dino.size) &&
